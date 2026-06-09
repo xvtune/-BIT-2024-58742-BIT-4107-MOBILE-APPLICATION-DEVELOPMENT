@@ -1,162 +1,52 @@
-That's the default code — replace it all! 
+# BIT4107 - Mobile Application Development
 
-**Ctrl+A → Delete → paste this:**
+Flutter projects developed throughout the BIT4107 unit.
 
-```dart
-import 'package:flutter/material.dart';
+## Projects
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Week 4 - Event Handling',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2E75B6)),
-        useMaterial3: true,
-      ),
-      home: const EventHandlingScreen(),
-    );
-  }
-}
-
-class EventHandlingScreen extends StatefulWidget {
-  const EventHandlingScreen({super.key});
-  @override
-  State<EventHandlingScreen> createState() => _EventHandlingScreenState();
-}
-
-class _EventHandlingScreenState extends State<EventHandlingScreen> {
-  int counter = 0;
-  String lastEvent = 'No event yet';
-  Color bgColor = const Color(0xFFEBF5FF);
-  final textController = TextEditingController();
-  String submittedText = '';
-  bool switchValue = false;
-  double sliderValue = 0.5;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgColor,
-      appBar: AppBar(
-        title: const Text('Event Handling', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        backgroundColor: const Color(0xFF2E75B6),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Button Events', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF1F3864))),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () => setState(() { counter++; lastEvent = 'Increment tapped'; }),
-                  icon: const Icon(Icons.add),
-                  label: const Text('Increment'),
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
-                ),
-                Text('$counter', style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFF1F3864))),
-                ElevatedButton.icon(
-                  onPressed: () => setState(() { if (counter > 0) counter--; lastEvent = 'Decrement tapped'; }),
-                  icon: const Icon(Icons.remove),
-                  label: const Text('Decrement'),
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            const Text('Text Input Event', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF1F3864))),
-            const SizedBox(height: 12),
-            TextField(
-              controller: textController,
-              decoration: InputDecoration(
-                labelText: 'Type something and submit',
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-                filled: true,
-                fillColor: Colors.white,
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: () => setState(() {
-                    submittedText = textController.text;
-                    lastEvent = 'Text submitted: "$submittedText"';
-                    textController.clear();
-                  }),
-                ),
-              ),
-            ),
-            if (submittedText.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Text('You submitted: $submittedText', style: const TextStyle(color: Colors.green, fontWeight: FontWeight.w500)),
-              ),
-            const SizedBox(height: 24),
-            const Text('Toggle & Slider Events', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF1F3864))),
-            const SizedBox(height: 12),
-            Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Dark Mode Toggle', style: TextStyle(fontSize: 16)),
-                        Switch(
-                          value: switchValue,
-                          onChanged: (val) => setState(() {
-                            switchValue = val;
-                            bgColor = val ? const Color(0xFF1A1A2E) : const Color(0xFFEBF5FF);
-                            lastEvent = 'Switch: ${val ? "ON" : "OFF"}';
-                          }),
-                        ),
-                      ],
-                    ),
-                    Text('Brightness: ${(sliderValue * 100).toInt()}%'),
-                    Slider(
-                      value: sliderValue,
-                      onChanged: (val) => setState(() { sliderValue = val; lastEvent = 'Slider: ${(val * 100).toInt()}%'; }),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Text('Gesture Detection', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF1F3864))),
-            const SizedBox(height: 12),
-            GestureDetector(
-              onTap: () => setState(() => lastEvent = 'Box tapped!'),
-              onLongPress: () => setState(() => lastEvent = 'Box long pressed!'),
-              onDoubleTap: () => setState(() => lastEvent = 'Box double tapped!'),
-              child: Container(
-                width: double.infinity,
-                height: 80,
-                decoration: BoxDecoration(color: const Color(0xFF2E75B6), borderRadius: BorderRadius.circular(12)),
-                child: const Center(child: Text('Tap / Double Tap / Long Press me!', style: TextStyle(color: Colors.white, fontSize: 14))),
-              ),
-            ),
-            const SizedBox(height: 24),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(color: const Color(0xFF1F3864), borderRadius: BorderRadius.circular(12)),
-              child: Text('Last Event: $lastEvent', style: const TextStyle(color: Colors.white, fontSize: 14)),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+### Week 1 - Hello World
+Basic Flutter app demonstrating environment setup and app structure.
 ```
+cd week1_hello_world
+flutter pub get
+flutter run
+```
+
+### Week 2 - Student Management App
+Three-screen app with Login, Registration, and Dashboard.
+```
+cd week2_student_app
+flutter pub get
+flutter run
+```
+
+### Week 3 - UI Prototype
+Full 5-screen prototype including Splash, Login, Register, Dashboard, and Student Profile.
+```
+cd week3_ui_prototype
+flutter pub get
+flutter run
+```
+
+### Week 4 - Event Handling
+Demonstrates button events, text input, gestures, toggles and sliders.
+```
+cd week4_event_handling
+flutter pub get
+flutter run
+```
+
+### Week 5 - Data Management
+Full CRUD operations — Create, Read, Update, Delete student records with search.
+```
+cd week5_data_management
+flutter pub get
+flutter run
+```
+
+## Tech Stack
+- Flutter 3.44.0
+- Dart
+- VS Code
+- Android Studio
 
